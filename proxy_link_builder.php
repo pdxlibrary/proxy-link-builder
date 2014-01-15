@@ -1,7 +1,6 @@
 <?php
 
 
-
 // Processes $link to create a proxied version.     
 $link = urldecode($_GET['link']);    
 $link = str_replace("http:/","http://",$link);    
@@ -13,6 +12,9 @@ $link = str_replace("https:///","https://",$link);
 // check for "http"
 if(strcmp($link,'') && strcmp(substr($link,0,4),'http'))
   $link = "http://".$link;
+
+// encode double quotes
+$link = str_replace('"','%22',$link);
 
 // check if link is already proxied (don't double-proxy)    
 $link = str_replace("http://stats.lib.pdx.edu/proxy.php?url=","",$link);    
